@@ -2,7 +2,7 @@
 FROM python:3.11-slim
 
 # Set metadata
-LABEL maintainer="Jason13"
+LABEL maintainer="Sairam"
 LABEL description="RAMRecon - Information Gathering & Reconnaissance Toolkit"
 LABEL version="2.0"
 

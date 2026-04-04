@@ -6,8 +6,8 @@ from ..core.catalog_cache import (
 )
 
 VERSION = "2.0"
-AUTHOR = "Jason13"
-TEAL = "#2EC4B6"
+AUTHOR = "Sairam"
+
 CATALOG_FILENAME = "modules.json"
 RAMRECON_CATALOG_ENV = "RAMRECON_CATALOG_PATH"
 

@@ -2,7 +2,7 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.align import Align
 
-TEAL = "#2EC4B6"
+RED = "#ef4444"
 
 console = Console()
 
@@ -18,7 +18,7 @@ def logo(version: str, modules: int, author: str) -> None:
 """.strip("\n")
 
     colored_art = "\n".join(
-        f"[bold {TEAL}]{line}[/bold {TEAL}]"
+        f"[bold {RED}]{line}[/bold {RED}]"
         for line in art.splitlines()
     )
 
@@ -35,7 +35,7 @@ def logo(version: str, modules: int, author: str) -> None:
         Align.center(
             Panel(
                 panel_content,
-                border_style=TEAL,
+                border_style=RED,
                 padding=(1, 3),
                 title="[bold white]RAMRecon[/bold white]",
                 subtitle="[bold cyan]Reconnaissance • Analysis • Intelligence[/bold cyan]",
@@ -44,5 +44,5 @@ def logo(version: str, modules: int, author: str) -> None:
     )
 
     console.print(
-        f"[bold {TEAL}]Type 'help' to see available commands.[/bold {TEAL}]"
+        f"[bold {RED}]Type 'help' to see available commands.[/bold {RED}]"
     )
