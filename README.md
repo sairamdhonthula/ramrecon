@@ -152,46 +152,6 @@ cd ramrecon
 pip install -r requirements.txt
 python -m ramrecon
 
-## 🔄 Changelog
-
-### Version 2.0 (Current)
-**Major refactor: Complete CLI redesign and module expansion**
-
-- **New interactive CLI** - Full command-line interface with 25+ commands
-- **135 modules** - Expanded from 50 modules
-- **Better UI** - Professional formatting and progress tracking
-- **Multi-threading** - Improved performance with concurrent execution
-- **API integrations** - Shodan, VirusTotal, Censys, SSL Labs support
-- **Export capabilities** - TXT, CSV, JSON output formats
-- **Configuration system** - Profiles, settings, and API key management
-- **Module discovery** - Search, browse, and favorite modules
-- **Batch operations** - Run multiple modules simultaneously
-
-
-- Simple number input system (1-50)
-- Basic 50 reconnaissance modules
-- Console text output only
-- Fixed configuration settings
-
----
-
-🛣️ Roadmap
-
-Planned improvements include:
-
-dynamic module auto-discovery
-HTML reporting
-advanced profile presets
-web dashboard companion
-plugin marketplace support
-saved session restoration
-richer result filtering
-module dependency handling
-🤝 Contributing
-
-Contributions, suggestions, bug reports, and workflow improvements are welcome.
-
-
 👨‍💻 Author
 
 Dhonthula Sairam
