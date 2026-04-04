@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+recursive-include ramrecon/config *.json
+recursive-include ramrecon/templates *.j2
+recursive-include ramrecon/data *
+include ramrecon/py.typed

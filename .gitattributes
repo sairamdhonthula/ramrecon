@@ -1,0 +1,14 @@
+*          text=auto eol=lf
+
+# Windows-only scripts/configs can use CRLF
+*.ps1      text eol=crlf
+*.bat      text eol=crlf
+
+# Unix shells must stay LF
+*.sh       text eol=lf
+
+# Data & binaries
+*.png      binary
+*.jpg      binary
+*.zip      binary
+*.pdf      binary
