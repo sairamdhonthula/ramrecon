@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAMRecon - Professional Dashboard</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --card: #111827;
+    --card-2: #0f172a;
+    --border: #1f2937;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --accent: #2ec4b6;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --green: #22c55e;
+    --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    --radius: 18px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Segoe UI", "Inter", sans-serif;
+    margin: 0;
+    padding: 30px;
+    line-height: 1.6;
+  }
+
+  .section {
+    max-width: 1300px;
+    margin: 0 auto 60px auto;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  .section-subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+  }
+
+  .badge-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .badge {
+    background: rgba(46, 196, 182, 0.12);
+    border: 1px solid rgba(46, 196, 182, 0.3);
+    color: var(--accent);
+    padding: 8px 14px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 22px;
+    margin-top: 28px;
+  }
+
+  .card {
+    background: linear-gradient(145deg, var(--card), var(--card-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(46, 196, 182, 0.5);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .card-title.network { color: var(--blue); }
+  .card-title.web { color: var(--purple); }
+  .card-title.security { color: var(--red); }
+
+  .module-list {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .module-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: var(--text);
+    font-size: 0.95rem;
+  }
+
+  .muted {
+    color: var(--muted);
+    font-size: 0.92rem;
+  }
+
+  .command-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 22px;
+    margin-top: 28px;
+  }
+
+  .command-card {
+    background: linear-gradient(145deg, #101826, #0f172a);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px;
+  }
+
+  .command-card h3 {
+    margin-top: 0;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    color: white;
+  }
+
+  .command-item {
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .command-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .cmd {
+    display: inline-block;
+    background: #0b1320;
+    border: 1px solid rgba(46,196,182,0.25);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-family: "Consolas", monospace;
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+  }
+
+  .cmd-desc {
+    color: var(--muted);
+    font-size: 0.93rem;
+  }
+
+  .cmd-example {
+    display: inline-block;
+    margin-top: 8px;
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.25);
+    color: #93c5fd;
+    padding: 6px 10px;
+    border-radius: 10px;
+    font-family: "Consolas", monospace;
+    font-size: 0.88rem;
+  }
+</style>
+</head>
+<body>
+<!-- ========================= MODULES ========================= -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">📦 RAMRecon Module Coverage</div>
+    <div class="section-subtitle">
+      RAMRecon currently includes <strong>135 modular capabilities</strong> organized into focused analyst workflows.
+    </div>
+
+    <div class="badge-row">
+      <div class="badge">135 Total Modules</div>
+      <div class="badge">Modular Architecture</div>
+      <div class="badge">Analyst-Focused</div>
+      <div class="badge">Recon + Intelligence</div>
+    </div>
+  </div>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-title network">🌐 Network & Infrastructure</div>
+      <div class="muted">Infrastructure mapping, DNS intelligence, routing, transport visibility, and host discovery.</div>
+      <div class="module-list">
+        <div class="module-item">1. Associated Hosts</div>
+        <div class="module-item">3. DNS Records</div>
+        <div class="module-item">9. Open Ports Scan</div>
+        <div class="module-item">12. SSL Chain Analysis</div>
+        <div class="module-item">16. Traceroute</div>
+        <div class="module-item">18. WHOIS Lookup</div>
+        <div class="module-item">20. ASN Lookup</div>
+        <div class="module-item">27. CDN Detection</div>
+        <div class="module-item">41. Network Certificate Inventory</div>
+        <div class="module-item">50. DNS CAA Checker</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title web">🕸️ Web Application Analysis</div>
+      <div class="muted">Web surface inspection, crawling, content discovery, client-side analysis, and configuration review.</div>
+      <div class="module-list">
+        <div class="module-item">53. Archive History</div>
+        <div class="module-item">56. CMS Detection</div>
+        <div class="module-item">58. Content Discovery</div>
+        <div class="module-item">60. Robots.txt Analyzer</div>
+        <div class="module-item">66. Sitemap Parsing</div>
+        <div class="module-item">68. Technology Stack Detection</div>
+        <div class="module-item">70. JavaScript File Analyzer</div>
+        <div class="module-item">73. Hidden Parameter Discovery</div>
+        <div class="module-item">89. WebSocket Endpoint Sniffer</div>
+        <div class="module-item">93. GraphQL Introspection Probe</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title security">🛡️ Security & Threat Intelligence</div>
+      <div class="muted">Exposure checks, reputation enrichment, certificate intelligence, and security posture visibility.</div>
+      <div class="module-list">
+        <div class="module-item">103. Censys Reconnaissance</div>
+        <div class="module-item">105. Data Leak Detection</div>
+        <div class="module-item">106. Exposed Environment Files</div>
+        <div class="module-item">109. HTTP Headers</div>
+        <div class="module-item">110. HTTP Security Features</div>
+        <div class="module-item">115. Shodan Reconnaissance</div>
+        <div class="module-item">116. SSL Labs Report</div>
+        <div class="module-item">120. VirusTotal Scan</div>
+        <div class="module-item">121. CT Log Query</div>
+        <div class="module-item">126. Git Repository Exposure Check</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========================= COMMANDS ========================= -->
+<section class="section">
+  <div class="section-header">
+    <div class="section-title">⌨️ CLI Command Reference</div>
+    <div class="section-subtitle">
+      Core command groups for navigating, configuring, and executing workflows inside RAMRecon.
+    </div>
+
+    <div class="badge-row">
+      <div class="badge">25+ Commands</div>
+      <div class="badge">Interactive CLI</div>
+      <div class="badge">Batch Execution</div>
+      <div class="badge">Favorites + Profiles</div>
+    </div>
+  </div>
+
+  <div class="command-groups">
+    <div class="command-card">
+      <h3>🔍 Discovery & Selection</h3>
+
+      <div class="command-item">
+        <div class="cmd">modules</div>
+        <div class="cmd-desc">List all available modules.</div>
+        <div class="cmd-example">modules</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">modules -d</div>
+        <div class="cmd-desc">Show detailed module listing.</div>
+        <div class="cmd-example">modules -d</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">search ssl</div>
+        <div class="cmd-desc">Search modules by keyword.</div>
+        <div class="cmd-example">search ssl</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">use 42</div>
+        <div class="cmd-desc">Select a module by its numeric ID.</div>
+        <div class="cmd-example">use 42</div>
+      </div>
+    </div>
+
+    <div class="command-card">
+      <h3>⚙️ Configuration</h3>
+
+      <div class="command-item">
+        <div class="cmd">set target example.com</div>
+        <div class="cmd-desc">Define the current scan target.</div>
+        <div class="cmd-example">set target example.com</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">set threads 20</div>
+        <div class="cmd-desc">Adjust concurrency or runtime settings.</div>
+        <div class="cmd-example">set threads 20</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">opts</div>
+        <div class="cmd-desc">Show active configuration values.</div>
+        <div class="cmd-example">opts</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">scope</div>
+        <div class="cmd-desc">Display current session context.</div>
+        <div class="cmd-example">scope</div>
+      </div>
+    </div>
+
+    <div class="command-card">
+      <h3>▶️ Execution & Output</h3>
+
+      <div class="command-item">
+        <div class="cmd">run</div>
+        <div class="cmd-desc">Execute the selected module.</div>
+        <div class="cmd-example">run</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">runall infra</div>
+        <div class="cmd-desc">Run all modules in a category.</div>
+        <div class="cmd-example">runall infra</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">runfav</div>
+        <div class="cmd-desc">Execute favorite modules in one pass.</div>
+        <div class="cmd-example">runfav</div>
+      </div>
+
+      <div class="command-item">
+        <div class="cmd">export json</div>
+        <div class="cmd-desc">Export collected results to file.</div>
+        <div class="cmd-example">export json</div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
