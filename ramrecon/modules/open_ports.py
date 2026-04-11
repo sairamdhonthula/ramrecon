@@ -64,17 +64,12 @@ def shodan_lookup(ip, key):
         pass
     return {}
 
-def main():
-    p = argparse.ArgumentParser()
-    p.add_argument("target")
-    p.add_argument("-p", "--ports", default="1-1024")
-    p.add_argument("-t", "--threads", type=int, default=100)
-    p.add_argument("-T", "--timeout", type=float, default=1.0)
-    p.add_argument("--no-fallback", action="store_true")
-    args = p.parse_args()
+def run(target, threads, opts):
+    timeout = float(opts.get("timeout", 1.0))
+    ports_spec = str(opts.get("ports", "1-1024"))
 
     banner()
-    host = clean_domain_input(args.target)
+    host = clean_domain_input(target)
     try:
         ip = socket.gethostbyname(host)
     except:
@@ -83,8 +78,8 @@ def main():
 
     shodan_key = API_KEYS.get("SHODAN_API_KEY","")
     shodan_ports = shodan_lookup(ip, shodan_key) if shodan_key else {}
-    use_scan = not args.no_fallback and (not shodan_ports or shodan_key)
-    ports = parse_ports(args.ports) if use_scan else sorted(shodan_ports)
+    use_scan = not False and (not shodan_ports or shodan_key)
+    ports = parse_ports(ports_spec) if use_scan else sorted(shodan_ports)
 
     table = Table(title=f"Open Ports – {host} ({ip})", header_style="bold magenta")
     table.add_column("Port", style="cyan", justify="right")
@@ -100,8 +95,8 @@ def main():
     if use_scan:
         with Progress(SpinnerColumn(), TextColumn("[white]{task.description}"), BarColumn(), console=console, transient=True) as pr:
             task = pr.add_task("Scanning ports", total=len(ports))
-            with ThreadPoolExecutor(max_workers=args.threads) as pool:
-                futures = {pool.submit(scan_port, ip, p, args.timeout): p for p in ports}
+            with ThreadPoolExecutor(max_workers=threads) as pool:
+                futures = {pool.submit(scan_port, ip, p, timeout): p for p in ports}
                 for fut in as_completed(futures):
                     res = fut.result()
                     if res:
@@ -125,4 +120,11 @@ def main():
     console.print("[white][*] Port scanning completed[/white]")
 
 if __name__ == "__main__":
-    main()
+    tgt = sys.argv[1] if len(sys.argv) > 1 else ""
+    thr = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2].isdigit() else 100
+    opts = {}
+    if len(sys.argv) > 3:
+        import json
+        try: opts = json.loads(sys.argv[3])
+        except: pass
+    run(tgt, thr, opts)

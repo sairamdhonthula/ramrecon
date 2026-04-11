@@ -39,10 +39,14 @@ def sha256(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 def get_baseline(url: str, timeout: int):
-    r = requests.get(url, timeout=timeout, verify=False, allow_redirects=False)
-    length = len(r.content)
-    hsh = sha256(r.content)
-    return length, hsh, r.status_code
+    try:
+        r = requests.get(url, timeout=timeout, verify=False, allow_redirects=False)
+        length = len(r.content)
+        hsh = sha256(r.content)
+        return length, hsh, r.status_code
+    except Exception as e:
+        console.print(f"[red][!] Network error during baseline: {e}[/red]")
+        return 0, "", 0
 
 def random_token(n=8):
     return "".join(random.choices(string.ascii_lowercase + string.digits, k=n))
