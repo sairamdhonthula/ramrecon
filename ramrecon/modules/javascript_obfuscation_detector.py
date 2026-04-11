@@ -14,7 +14,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-console = Console()
+console = Console(record=True)
 TEAL        = "#2EC4B6"
 DEFAULT_MAX = 75
 PAT_HREF    = re.compile(r'href=["\']([^"\']+)["\']', re.I)

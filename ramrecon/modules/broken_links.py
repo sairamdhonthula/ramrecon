@@ -10,7 +10,7 @@ from ramrecon.utils.util import clean_domain_input, ensure_directory_exists, wri
 from ramrecon.config.settings import DEFAULT_TIMEOUT, EXPORT_SETTINGS, RESULTS_DIR
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print("[cyan]" + "="*40)

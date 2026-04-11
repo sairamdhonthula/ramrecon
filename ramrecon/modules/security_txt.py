@@ -15,7 +15,7 @@ from ramrecon.config.settings import DEFAULT_TIMEOUT, RESULTS_DIR, EXPORT_SETTIN
 init(autoreset=True)
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-console = Console()
+console = Console(record=True)
 
 FIELDS = {
     "Contact":             (True,  re.compile(r'^(mailto:|https?://)')),

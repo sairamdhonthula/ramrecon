@@ -10,7 +10,7 @@ import re
 from ramrecon.utils.util import clean_domain_input, clean_url, ensure_url_format
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

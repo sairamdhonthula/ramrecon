@@ -15,7 +15,7 @@ from colorama import Fore, init
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

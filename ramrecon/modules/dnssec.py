@@ -13,7 +13,7 @@ from ramrecon.utils.util import clean_domain_input, ensure_directory_exists, wri
 from ramrecon.config.settings import DEFAULT_TIMEOUT, EXPORT_SETTINGS, RESULTS_DIR
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-console = Console()
+console = Console(record=True)
 CONSOLE_WIDTH = shutil.get_terminal_size().columns if shutil.get_terminal_size().columns > 0 else console.width
 TEAL = "#2EC4B6"
 

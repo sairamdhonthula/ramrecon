@@ -28,7 +28,7 @@ except ImportError:
 
 from ramrecon.utils.util import clean_domain_input
 
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print("""

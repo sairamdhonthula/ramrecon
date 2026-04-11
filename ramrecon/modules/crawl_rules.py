@@ -7,7 +7,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 from ramrecon.utils.util import clean_domain_input, ensure_directory_exists, write_to_file
 from ramrecon.config.settings import DEFAULT_TIMEOUT, EXPORT_SETTINGS, RESULTS_DIR
 
-console = Console()
+console = Console(record=True)
 ROBOT_PATH = "/robots.txt"
 
 def banner():

@@ -16,7 +16,7 @@ import socket
 
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 DEFAULT_TIMEOUT = 10
 SHODAN_API_URL = "https://api.shodan.io/shodan/host/"

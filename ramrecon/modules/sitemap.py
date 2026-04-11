@@ -9,7 +9,7 @@ import aiohttp
 import asyncio
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 DEFAULT_TIMEOUT = 10  # seconds
 

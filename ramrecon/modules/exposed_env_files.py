@@ -7,7 +7,7 @@ from rich.table import Table
 from ramrecon.utils.util import clean_domain_input
 from ramrecon.config.settings import USER_AGENT, DEFAULT_TIMEOUT
 
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print("""

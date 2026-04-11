@@ -16,7 +16,7 @@ from colorama import init
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 init(autoreset=True)
 
-console = Console()
+console = Console(record=True)
 TEAL = "#2EC4B6"
 _WAYBACK = "https://web.archive.org/cdx/search/cdx"
 _CC      = "https://index.commoncrawl.org/CC-MAIN-2024-10-index"

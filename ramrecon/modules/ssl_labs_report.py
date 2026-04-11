@@ -11,7 +11,7 @@ import concurrent.futures
 import time
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 DEFAULT_TIMEOUT = 10
 

@@ -11,7 +11,7 @@ from ramrecon.utils.util import validate_ip
 
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

@@ -11,7 +11,7 @@ from colorama import Fore, init
 from ramrecon.utils.util import clean_domain_input, validate_domain
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

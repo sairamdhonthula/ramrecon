@@ -7,7 +7,7 @@ from rich.progress import Progress, SpinnerColumn, TextColumn, BarColumn
 from ramrecon.utils.util import clean_domain_input, ensure_directory_exists, write_to_file
 from ramrecon.config.settings import DEFAULT_TIMEOUT, EXPORT_SETTINGS, RESULTS_DIR
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-console = Console(); TEAL="#2EC4B6"
+console = Console(record=True); TEAL="#2EC4B6"
 
 PAT_URL     = re.compile(r"https?://[^\s\"'<>]+", re.I)
 PAT_EMAIL   = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}", re.I)

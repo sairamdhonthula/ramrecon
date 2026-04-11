@@ -8,7 +8,7 @@ from colorama import Fore, init, Style
 from ramrecon.utils.util import clean_domain_input
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(f"""

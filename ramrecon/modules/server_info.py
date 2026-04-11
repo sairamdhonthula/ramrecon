@@ -7,7 +7,7 @@ from rich.table import Table
 from colorama import Fore, init
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 DEFAULT_TIMEOUT = 10
 

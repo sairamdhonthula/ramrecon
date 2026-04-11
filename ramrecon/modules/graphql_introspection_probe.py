@@ -13,7 +13,7 @@ from ramrecon.config.settings import DEFAULT_TIMEOUT
 from ramrecon.utils.util import clean_domain_input
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 requests.packages.urllib3.disable_warnings()
 
 DEFAULT_MAX_PAGES = 100

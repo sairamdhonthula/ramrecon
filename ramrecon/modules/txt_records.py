@@ -10,7 +10,7 @@ from ramrecon.utils.util import clean_domain_input
 from ramrecon.config.settings import DEFAULT_TIMEOUT
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(f"""

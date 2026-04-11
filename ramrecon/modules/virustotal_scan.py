@@ -9,7 +9,7 @@ from ramrecon.utils.util import clean_url, validate_url
 from ramrecon.config.settings import API_KEYS
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

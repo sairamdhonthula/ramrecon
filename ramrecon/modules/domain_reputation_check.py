@@ -7,7 +7,7 @@ from ramrecon.utils.util import clean_domain_input, resolve_to_ip, ensure_direct
 from ramrecon.config.settings import DEFAULT_TIMEOUT, API_KEYS, RESULTS_DIR, EXPORT_SETTINGS
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-console = Console()
+console = Console(record=True)
 
 RBL_DOMS = ["dbl.spamhaus.org", "multi.uribl.com", "black.uribl.com", "rhsbl.scientificspam.net"]
 IP_RBLS  = ["zen.spamhaus.org", "bl.spamcop.net", "b.barracudacentral.org"]

@@ -21,7 +21,7 @@ warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWar
 from ramrecon.utils.util import clean_domain_input
 from ramrecon.config.settings import DEFAULT_TIMEOUT
 
-console = Console()
+console = Console(record=True)
 TEAL = "#2EC4B6"
 
 DEFAULT_PARAMS = [

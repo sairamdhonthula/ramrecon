@@ -23,7 +23,7 @@ from ramrecon.config.settings import DEFAULT_TIMEOUT, EXPORT_SETTINGS, RESULTS_D
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 init(autoreset=True)
 
-console = Console()
+console = Console(record=True)
 TEAL = "#2EC4B6"
 session = requests.Session()
 

@@ -11,7 +11,7 @@ from ramrecon.config.settings import DEFAULT_TIMEOUT
 
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

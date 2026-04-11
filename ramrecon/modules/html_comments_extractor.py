@@ -17,7 +17,7 @@ warnings.filterwarnings("ignore", category=urllib3.exceptions.InsecureRequestWar
 from ramrecon.utils.util import clean_domain_input
 from ramrecon.config.settings import DEFAULT_TIMEOUT
 
-console = Console()
+console = Console(record=True)
 pat_href    = re.compile(r'href=["\']([^"\']+)["\']', re.I)
 pat_src     = re.compile(r'src=["\']([^"\']+)["\']', re.I)
 pat_comment = re.compile(r'<!--(.*?)-->', re.S)

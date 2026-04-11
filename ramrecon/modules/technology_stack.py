@@ -22,7 +22,7 @@ if missing_modules:
     sys.exit(1)
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 log_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'Logs')
 if not os.path.exists(log_dir):

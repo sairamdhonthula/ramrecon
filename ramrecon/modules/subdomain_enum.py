@@ -7,7 +7,7 @@ from rich.table import Table
 
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 def banner():
     console.print(Fore.GREEN + """

@@ -8,7 +8,7 @@ from ramrecon.utils.util import clean_url, make_request, validate_url
 
 
 init(autoreset=True)
-console = Console()
+console = Console(record=True)
 
 
 CMS_SIGNATURES = {
