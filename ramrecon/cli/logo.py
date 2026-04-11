@@ -3,6 +3,7 @@ from rich.panel import Panel
 from rich.align import Align
 
 RED = "#ef4444"
+TEAL = "#2EC4B6"
 
 console = Console()
 
