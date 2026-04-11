@@ -23,7 +23,7 @@ By using this tool, you agree that:
 ## 🚀 Key Features
 
 - **Interactive CLI** with structured workflow commands
-- **135 modular capabilities** across recon, web, and security analysis
+- **50 carefully selected modules** across recon, web, and security analysis
 - **Professional terminal UI** with formatted tables, panels, and progress indicators
 - **Batch execution** for running multiple modules efficiently
 - **Profile-based workflows** for quick investigations
@@ -80,62 +80,100 @@ Its capabilities are organized into six major categories:
 
 
 
-### 📋 **All Modules** *(135 total)*
+RAMRecon currently includes **50 carefully selected reconnaissance and security analysis modules** designed to support practical cyber investigation, infrastructure profiling, web surface inspection, and exposure discovery workflows.
 
-| Network & Infrastructure | Web Application Analysis | Security & Threat Intelligence |
-|--------------------------|---------------------------|--------------------------------|
-| 1. Associated Hosts | 53. Archive History | 103. Censys Reconnaissance |
-| 2. DNS Over HTTPS | 54. Broken Links Detection | 104. Certificate Authority Recon |
-| 3. DNS Records | 55. Carbon Footprint | 105. Data Leak Detection |
-| 4. DNSSEC Check | 56. CMS Detection | 106. Exposed Environment Files |
-| 5. Domain Info | 57. Cookies Analyzer | 107. Firewall Detection |
-| 6. Domain Reputation Check | 58. Content Discovery | 108. Global Ranking |
-| 7. HTTP/2 & HTTP/3 Support | 59. Crawler | 109. HTTP Headers |
-| 8. IP Info | 60. Robots.txt Analyzer | 110. HTTP Security Features |
-| 9. Open Ports Scan | 61. Directory Finder | 111. Malware & Phishing Check |
-| 10. Server Info | 62. Email Harvesting | 112. Pastebin Monitoring |
-| 11. Server Location | 63. Performance Monitoring | 113. Privacy & GDPR Compliance |
-| 12. SSL Chain Analysis | 64. Quality Metrics | 114. Security.txt Check |
-| 13. SSL Expiry Alert | 65. Redirect Chain | 115. Shodan Reconnaissance |
-| 14. TLS Cipher Suites | 66. Sitemap Parsing | 116. SSL Labs Report |
-| 15. TLS Handshake Simulation | 67. Social Media Presence | 117. SSL Pinning Check |
-| 16. Traceroute | 68. Technology Stack Detection | 118. Subdomain Enumeration |
-| 17. TXT Records | 69. Third-Party Integrations | 119. Subdomain Takeover |
-| 18. WHOIS Lookup | 70. JavaScript File Analyzer | 120. VirusTotal Scan |
-| 19. Zone Transfer | 71. CORS Misconfiguration Scanner | 121. CT Log Query |
-| 20. ASN Lookup | 72. Login Page Brute Identifier | 122. Breached Credentials Lookup |
-| 21. Reverse IP Lookup | 73. Hidden Parameter Discovery | 123. Cloud Bucket Exposure |
-| 22. IP Range Scanner | 74. Clickjacking Test | 124. JWT Token Analyzer |
-| 23. RDAP Lookup | 75. Form Grabber | 125. Exposed API Endpoints |
-| 24. NTP Information Leak | 76. Favicon Hashing | 126. Git Repository Exposure Check |
-| 25. IPv6 Reachability Test | 77. HTML Comments Extractor | 127. Typosquat Domain Checker |
-| 26. BGP Route Analysis | 78. CAPTCHA Presence Checker | 128. SPF / DKIM / DMARC Validator |
-| 27. CDN Detection | 79. JavaScript Obfuscation Detector | 129. Open Redirect Finder |
-| 28. Reverse DNS Scan | 80. Virtual Host Fuzzer | 130. Rate-Limit & WAF Bypass Test |
-| 29. Network Timezone Detection | 81. Session Cookie Lifetime Checker | 131. Security Changelog Diff |
-| 30. Geo-DNS Footprint | 82. HTML5 Feature Abuse Detector | 132. Session Hijacking (Passive) |
-| 31. SPF Network Extractor | 83. Autocomplete Vulnerability Checker | 133. Rogue Certificate Check |
-| 32. NS Geo/ASN Diversity | 84. Embedded Object Hunter | 134. JS Malware Scanner |
-| 33. DNS SLA Latency Monitor | 85. Multi-Language URL Tester | 135. Cloud Service Enumeration |
-| 34. RPKI Route Validity | 86. Pixel Tracker Finder | |
-| 35. Recursive Nameserver Leak | 87. SEO Abuse Detector | |
-| 36. Dual-Stack Behavior Profiler | 88. Dependency JS/CDN Scanner | |
-| 37. ICMP Reachability Matrix | 89. WebSocket Endpoint Sniffer | |
-| 38. IP Allocation History Tracker | 90. API Schema Grabber | |
-| 39. Autonomous Neighbor Peering Map | 91. Lazy-Load Resource Finder | |
-| 40. TLS Session Resumption Map | 92. HTTP Method Enumerator | |
-| 41. Network Certificate Inventory | 93. GraphQL Introspection Probe | |
-| 42. SSH Banner & Key Fingerprinter | 94. File Upload Surface Finder | |
-| 43. SNMP Public Community Checker | 95. DOM Sink Scanner | |
-| 44. SNMP Bulk Walk | 96. Cache Behavior Analyzer | |
-| 45. UDP Service Sampler | 97. Cookie Scope Diff Across Subdomains | |
-| 46. NetBIOS Name Query | 98. CSP Deep Analyzer | |
-| 47. TTL Analysis | 99. Third-Party Script Risk Profiler | |
-| 48. IRR Routing Registry Analyzer | 100. Static Asset Fingerprinter | |
-| 49. Dual Stack Diff | 101. Crawl Rules | |
-| 50. DNS CAA Checker | 102. Email Config | |
-| 51. Decoy DNS Beacon | | |
-| 52. Geo IP Spoof Detection | | |
+# 🌐 Network & Infrastructure Reconnaissance
+
+These modules focus on **domain intelligence, DNS visibility, transport behavior, certificate analysis, and network-level discovery**.
+
+They are intended to help analysts understand how a target is exposed at the infrastructure level before moving into deeper application and security analysis.
+
+### Included Modules
+
+- **Associated Hosts** — Identify related hosts and connected infrastructure
+- **DNS Over HTTPS** — Validate DoH support and resolver behavior
+- **DNS Records** — Retrieve A, AAAA, MX, NS, TXT, and CNAME records
+- **DNSSEC Check** — Verify whether DNSSEC is configured and exposed
+- **Domain Info** — Collect domain-level metadata and registration context
+- **Domain Reputation Check** — Assess general trust and reputation signals
+- **HTTP/2 & HTTP/3 Support** — Detect protocol support and transport capabilities
+- **IP Info** — Gather IP ownership, ASN, and routing context
+- **Open Ports Scan** — Identify exposed TCP service ports
+- **Server Info** — Collect web server banner and response information
+- **Server Location** — Resolve geolocation and hosting context
+- **SSL Chain Analysis** — Inspect certificate chain validity and trust path
+- **SSL Expiry Alert** — Detect certificate expiration risk
+- **TLS Cipher Suites** — Enumerate supported TLS ciphers
+- **Traceroute** — Map path visibility to the target
+- **TXT Records** — Extract TXT-based metadata and service configuration
+- **WHOIS Lookup** — Retrieve WHOIS registration information
+- **ASN Lookup** — Identify ASN ownership and network association
+
+---
+
+## 🕸️ Web Application Surface Analysis
+
+These modules focus on **content discovery, crawling, web behavior, client-side analysis, and application exposure mapping**.
+
+They help analysts understand the visible attack surface of a target application and identify weak or interesting exposure points.
+
+### Included Modules
+
+- **Archive History** — Review historical snapshots and archived content
+- **Broken Links Detection** — Identify dead or misconfigured links
+- **CMS Detection** — Detect content management systems and platforms
+- **Cookies Analyzer** — Inspect cookie attributes, scope, and security flags
+- **Content Discovery** — Discover exposed files, paths, and web resources
+- **Crawler** — Crawl linked pages and enumerate site structure
+- **Robots.txt Analyzer** — Inspect robots directives and hidden paths
+- **Directory Finder** — Identify accessible directories and paths
+- **Redirect Chain** — Analyze redirect behavior and chain logic
+- **Sitemap Parsing** — Parse sitemap.xml and enumerate indexed pages
+- **Technology Stack Detection** — Identify frameworks, libraries, and platforms
+- **JavaScript File Analyzer** — Analyze linked JavaScript resources
+- **CORS Misconfiguration Scanner** — Detect insecure CORS behavior
+- **Hidden Parameter Discovery** — Identify potentially hidden request parameters
+- **Clickjacking Test** — Check framing protections and clickjacking exposure
+- **Favicon Hashing** — Generate favicon hashes for fingerprinting and correlation
+- **HTML Comments Extractor** — Extract comments from page source
+- **JavaScript Obfuscation Detector** — Detect suspicious or heavily obfuscated JS
+- **HTTP Method Enumerator** — Identify allowed HTTP methods
+- **GraphQL Introspection Probe** — Check GraphQL introspection exposure
+
+---
+
+## 🛡️ Security & Threat Intelligence
+
+These modules focus on **security posture review, exposure detection, reputation enrichment, and intelligence-based visibility**.
+
+They are designed to help analysts identify weak configurations, exposed artifacts, and external intelligence signals associated with a target.
+
+### Included Modules
+
+- **Data Leak Detection** — Search for exposure indicators and leaked references
+- **Exposed Environment Files** — Detect exposed `.env` and sensitive config files
+- **Firewall Detection** — Identify possible WAF or filtering technologies
+- **HTTP Headers** — Retrieve and inspect HTTP response headers
+- **HTTP Security Features** — Evaluate common security headers and hardening signals
+- **Malware & Phishing Check** — Assess known malicious or phishing-related indicators
+- **Security.txt Check** — Verify presence and validity of `security.txt`
+- **Shodan Reconnaissance** — Enrich host visibility using Shodan
+- **SSL Labs Report** — Integrate SSL Labs style certificate posture review
+- **Subdomain Enumeration** — Discover visible subdomains
+- **VirusTotal Scan** — Enrich indicators with VirusTotal reputation context
+- **CT Log Query** — Query certificate transparency logs for subdomain and cert visibility
+
+---
+
+## 🎯 Why This Module Set Matters
+
+The RAMRecon module set is intentionally designed to be:
+
+- **practical** for real-world recon workflows
+- **maintainable** as a serious project
+- **defensible** in interviews, demos, and project reviews
+- **modular** for future growth
+- **strong enough** to showcase analyst-oriented engineering skills
 
 ---
 
