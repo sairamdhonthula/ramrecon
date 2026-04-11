@@ -380,7 +380,7 @@
   ],
   "security_threat_intelligence": [
     {
-      "id": "95",
+      "id": "39",
       "name": "Data Leak Detection",
       "description": "Check for public data leaks & sensitive exposures.",
       "primary_input": "Domain",
@@ -388,7 +388,7 @@
       "script": "data_leak.py"
     },
     {
-      "id": "96",
+      "id": "40",
       "name": "Exposed Environment Files Checker",
       "description": "Detect exposed .env/config files.",
       "primary_input": "Domain/URL",
@@ -396,7 +396,7 @@
       "script": "exposed_env_files.py"
     },
     {
-      "id": "97",
+      "id": "41",
       "name": "Firewall Detection",
       "description": "Identify firewall/WAF presence heuristically.",
       "primary_input": "Domain/IP",
@@ -406,7 +406,7 @@
       "script": "firewall_detection.py"
     },
     {
-      "id": "99",
+      "id": "42",
       "name": "HTTP Headers",
       "description": "Extract HTTP response headers.",
       "primary_input": "Domain/URL",
@@ -414,7 +414,7 @@
       "script": "http_headers.py"
     },
     {
-      "id": "100",
+      "id": "43",
       "name": "HTTP Security Features",
       "description": "Evaluate security headers (HSTS, CSP, etc.).",
       "primary_input": "Domain/URL",
@@ -425,7 +425,7 @@
       "script": "http_security.py"
     },
     {
-      "id": "101",
+      "id": "44",
       "name": "Malware & Phishing Check",
       "description": "Check blocklists for malware/phishing indicators.",
       "primary_input": "Domain/URL",
@@ -433,7 +433,7 @@
       "script": "malware_phishing.py"
     },
     {
-      "id": "104",
+      "id": "45",
       "name": "Security.txt Check",
       "description": "Retrieve & parse security.txt disclosure info.",
       "primary_input": "Domain",
@@ -444,7 +444,7 @@
       "script": "security_txt.py"
     },
     {
-      "id": "105",
+      "id": "46",
       "name": "Shodan Reconnaissance",
       "description": "Query Shodan for exposed services & vulns.",
       "primary_input": "Domain/IP",
@@ -452,7 +452,7 @@
       "script": "shodan.py"
     },
     {
-      "id": "106",
+      "id": "47",
       "name": "SSL Labs Report",
       "description": "Pull detailed SSL Labs TLS assessment.",
       "primary_input": "Domain",
@@ -460,7 +460,7 @@
       "script": "ssl_labs_report.py"
     },
     {
-      "id": "108",
+      "id": "48",
       "name": "Subdomain Enumeration",
       "description": "Discover subdomains via multiple techniques.",
       "primary_input": "Domain",
@@ -468,7 +468,7 @@
       "script": "subdomain_enum.py"
     },
     {
-      "id": "110",
+      "id": "49",
       "name": "VirusTotal Scan",
       "description": "Lookup reputation & detections in VirusTotal.",
       "primary_input": "Domain/IP/URL",
@@ -476,7 +476,7 @@
       "script": "virustotal_scan.py"
     },
     {
-      "id": "111",
+      "id": "50",
       "name": "CT Log Query",
       "description": "Query certificate transparency logs for issued certs.",
       "primary_input": "Domain",
