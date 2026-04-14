@@ -40,6 +40,7 @@ def logo(version: str, modules: int, author: str) -> None:
                 padding=(1, 3),
                 title="[bold white]RAMRecon[/bold white]",
                 subtitle="[bold cyan]Reconnaissance • Analysis • Intelligence[/bold cyan]",
+                expand=False,
             )
         )
     )

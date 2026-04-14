@@ -3,6 +3,8 @@ from rich.console import Console
 from rich.panel import Panel
 from rich.text import Text
 from difflib import get_close_matches
+from rich.table import Table
+from rich import box
 
 from ramrecon.cli.status_bar import print_status_bar
 
@@ -181,20 +183,17 @@ class HelpMixin:
         console.print(_panel_title("RAMRecon CLI Help"))
         console.print()
 
-        cat_w = max(len(c) for c, _ in _ENTRIES) + 2
-        titles = Text()
-        titles.append("Category".ljust(cat_w), style=f"bold {TEAL}")
-        titles.append("Commands", style="bold white")
-        console.print(titles)
-        console.print()
+        table = Table(box=box.SIMPLE, show_header=True, header_style=f"bold {TEAL}")
+        table.add_column("Category", style=f"bold {CAT_COLOR}", width=15)
+        table.add_column("Commands", style=CMD_COLOR)
 
         for cat, cmds in _ENTRIES:
-            line = Text()
-            line.append(cat.ljust(cat_w), style=CAT_COLOR)
-            line.append(cmds, style=CMD_COLOR)
-            console.print(line)
+            table.add_row(cat, cmds)
 
+        console.print(table)
         console.print()
-        console.print(Text("Tip: use 'help <command>' for detailed docs.", style=f"bold white on {TEAL}"))
+        console.print(Text("Tip: type 'h <command>' or 'help <command>' for detailed docs.", style=f"bold white on {TEAL}"))
         console.print()
         print_status_bar(self)
+
+    do_h = do_help
