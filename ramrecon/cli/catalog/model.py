@@ -34,13 +34,35 @@ def normalize_catalog_ids(cat: Dict) -> Dict:
     return cat
 
 def catalog_to_tools(obj: Dict) -> List[Tool]:
-    out, id_seen = [], set()
+    out = []
+    idx = 1
+    main_sections = ["network_infrastructure", "web_application_analysis", "security_threat_intelligence"]
+    for cat_key in main_sections:
+        section_name = SECTION_NAMES.get(cat_key, cat_key)
+        for m in obj.get(cat_key, []):
+            mid = str(idx)
+            idx += 1
+            out.append(
+                Tool(
+                    number=mid,
+                    name=m.get("name", f"Module{mid}"),
+                    script=m.get("script", ""),
+                    section=section_name,
+                    description=m.get("description", ""),
+                    primary_input=m.get("primary_input", ""),
+                    options_meta=m.get("options", []),
+                    options_help=m.get("options_help", {}),
+                )
+            )
+    
     for cat_key, section_name in SECTION_NAMES.items():
+        if cat_key in main_sections:
+            continue
         for m in obj.get(cat_key, []):
             mid = str(m.get("id", "")).strip()
-            if not mid or mid in id_seen:
-                mid = str(max([int(x) for x in id_seen] + [0]) + 1)
-            id_seen.add(mid)
+            if not mid:
+                mid = str(idx)
+                idx += 1
             out.append(
                 Tool(
                     number=mid,

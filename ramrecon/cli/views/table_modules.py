@@ -160,7 +160,7 @@ def display_table(
 
     max_rows = max((len(v) for v in by_sec.values()), default=0)
     for i in range(max_rows):
-        row = [by_sec[s][i] if i < len(by_sec[s]) else "—" for s in SECTIONS]
+        row = [by_sec[s][i] if i < len(by_sec[s]) else "" for s in SECTIONS]
         table.add_row(*row)
 
     _print_centered(table, 0.95)
