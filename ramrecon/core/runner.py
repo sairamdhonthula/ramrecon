@@ -38,7 +38,7 @@ def execute_script(script_name: str, target: str, threads: int = 1, module_opts:
         cmd = [sys.executable, "-m", f"ramrecon.modules.{mod}", clean_domain_input(target), str(threads)]
         if module_opts:
             cmd.append(json.dumps(module_opts))
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8")
         first = True
         for line in iter(proc.stdout.readline, ""):
             if not line:
@@ -89,15 +89,28 @@ def run_modules(mod_ids: List[str], api_status: Dict[str, bool], target: str, th
             name = tool["name"] if tool else mid
             prog.update(task, module=name)
             if tool and tool["script"]:
-                allow = [o.replace("-", "_").lower() for o in (tool.get("options_meta") or [])]
-                merged = _merge_options(cli_ctx.global_option_overrides, cli_ctx.module_options.get(mid), allow) if cli_ctx else {}
-                out = execute_script(tool["script"], target, threads, merged, show_status=False, quiet=getattr(cli_ctx, "quiet_mode", False))
+                if mid == "51":
+                    if cli_ctx:
+                        prog.stop()
+                        try:
+                            cli_ctx._run_export(None)
+                        finally:
+                            prog.start()
+                    out = "Evidence & Reporting Center executed successfully."
+                else:
+                    allow = [o.replace("-", "_").lower() for o in (tool.get("options_meta") or [])]
+                    merged = _merge_options(cli_ctx.global_option_overrides, cli_ctx.module_options.get(mid), allow) if cli_ctx else {}
+                    out = execute_script(tool["script"], target, threads, merged, show_status=False, quiet=getattr(cli_ctx, "quiet_mode", False))
                 if cli_ctx:
                     cli_ctx._record_recent(mid)
+                    cli_ctx.session_history.append((mid, name, time.strftime("%Y-%m-%d %H:%M:%S")))
                 if out:
                     data[name] = out
                     sev = parse_output_severity(out)
                     runtimes.append((name, sev, time.time() - start))
+                    if cli_ctx:
+                        script_key = os.path.splitext(tool["script"])[0]
+                        cli_ctx.session_results[script_key] = out
             prog.advance(task)
     tag = mode_name if mode_name else "multi"
     generate_report(data, target, [tag])

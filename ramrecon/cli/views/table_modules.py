@@ -164,6 +164,14 @@ def display_table(
         table.add_row(*row)
 
     _print_centered(table, 0.95)
+    
+    reporting_center_panel = Panel(
+        Text("51. Evidence & Reporting Center: Generate reports, view history, and export session data.", justify="center", style="bold white"),
+        border_style=TEAL,
+        padding=(0, 2),
+        expand=False
+    )
+    _print_centered(reporting_center_panel, 0.95)
     console.print()
 
 

@@ -4,7 +4,6 @@ from importlib import import_module
 from types import ModuleType
 from typing import List, Type, Set
 
-# Subcommand modules (each must define __mixin_name__ = "<ClassName>")
 _COMMAND_MODULES: List[str] = [
     ".browse",
     ".select",
@@ -14,6 +13,7 @@ _COMMAND_MODULES: List[str] = [
     ".favorites",
     ".utility",
     ".help",
+    ".report",
 ]
 
 __all__ = ["COMMAND_MIXINS", "register_mixins"]

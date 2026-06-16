@@ -47,6 +47,8 @@ class _BareCLI(Base):
         self.favorite_modules = set()
         self.last_run_outputs = {}
         self.last_run_runtimes = []
+        self.session_results = {}
+        self.session_history = []
         self.quiet_mode = False
         self.no_color = False
         self.wrap_width = None

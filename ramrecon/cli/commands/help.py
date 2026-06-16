@@ -23,6 +23,7 @@ _ENTRIES = [
     ("Options",       "set target v, set threads n, set opt v, set id opt v, unset opt, opts [id], show options_full"),
     ("Info",          "scope, recent, fav [add|del|run|list|clear|tag:<tag>], viewout [mod], grepout <re>"),
     ("Profiles",      "profile speed|deep|safe"),
+    ("Reports",       "report, export [json|html|csv|md|pdf|all], reports, openreport, history"),
     ("Utility",       "clear, banner, info, reset [favorites|recent|options], config, api [service] [key]"),
     ("Other",         "help <command>, exit, quit"),
 ]
@@ -118,6 +119,21 @@ _CMD_DOCS = {
     "quit":     {"usage": "quit",
                  "desc":  "Quit RAMRecon.",
                  "ex":    ["quit"]},
+    "report":   {"usage": "report",
+                 "desc":  "Generate report selection menu to choose formats.",
+                 "ex":    ["report"]},
+    "export":   {"usage": "export [json|html|csv|md|pdf|all]",
+                 "desc":  "Export current session details to structured output formats.",
+                 "ex":    ["export html", "export json", "export all"]},
+    "reports":  {"usage": "reports",
+                 "desc":  "List all generated reports under the results directory.",
+                 "ex":    ["reports"]},
+    "openreport":{"usage": "openreport",
+                 "desc":  "Open the latest generated HTML report in your browser.",
+                 "ex":    ["openreport"]},
+    "history":  {"usage": "history",
+                 "desc":  "View session command execution history.",
+                 "ex":    ["history"]},
 }
 
 console = Console()

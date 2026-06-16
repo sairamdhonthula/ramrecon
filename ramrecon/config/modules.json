@@ -487,6 +487,16 @@
       "script": "ct_log_query.py"
     }
   ],
+  "evidence_reporting": [
+    {
+      "id": "51",
+      "name": "Evidence & Reporting Center",
+      "description": "Generate dynamic reports, package evidence, view history, and export session data.",
+      "primary_input": "None",
+      "options": [],
+      "script": "report_center.py"
+    }
+  ],
   "run_all": [],
   "special": []
 }

@@ -5,6 +5,7 @@ SECTION_NAMES = {
     "network_infrastructure": "Network & Infrastructure",
     "web_application_analysis": "Web Application Analysis",
     "security_threat_intelligence": "Security & Threat Intelligence",
+    "evidence_reporting": "Evidence & Reporting Center",
     "run_all": "Run All Scripts",
     "special": "Special Mode",
 }
@@ -36,7 +37,7 @@ def normalize_catalog_ids(cat: Dict) -> Dict:
 def catalog_to_tools(obj: Dict) -> List[Tool]:
     out = []
     idx = 1
-    main_sections = ["network_infrastructure", "web_application_analysis", "security_threat_intelligence"]
+    main_sections = ["network_infrastructure", "web_application_analysis", "security_threat_intelligence", "evidence_reporting"]
     for cat_key in main_sections:
         section_name = SECTION_NAMES.get(cat_key, cat_key)
         for m in obj.get(cat_key, []):

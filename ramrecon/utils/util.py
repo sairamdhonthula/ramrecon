@@ -31,7 +31,7 @@ def ensure_directory_exists(directory):
 # Read JSON configuration from a file
 def read_json(file_path):
     try:
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             return json.load(file)
     except Exception as e:
         print(Fore.RED + f"Error reading JSON file {file_path}: {e}")
@@ -50,7 +50,7 @@ def make_request(url, headers=None, timeout=10):
 # Write the output to a file (used for saving results)
 def write_to_file(file_path, data):
     try:
-        with open(file_path, 'w') as file:
+        with open(file_path, 'w', encoding='utf-8') as file:
             file.write(data)
     except Exception as e:
         print(Fore.RED + f"Error writing to file {file_path}: {e}")
@@ -72,7 +72,7 @@ def validate_ip(ip):
 # Simple log function to append to a log file
 def log_message(log_file, message):
     try:
-        with open(log_file, 'a') as f:
+        with open(log_file, 'a', encoding='utf-8') as f:
             f.write(f"{message}\n")
     except Exception as e:
         print(Fore.RED + f"Error writing log message: {e}")
