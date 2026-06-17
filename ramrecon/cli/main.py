@@ -54,6 +54,24 @@ class _BareCLI(Base):
         self.wrap_width = None
         os.system("cls" if os.name == "nt" else "clear")
         logo(VERSION, number_of_modules, AUTHOR)
+        from ramrecon.config.settings import STARTUP_ANIMATION
+        no_anim = "--no-animation" in sys.argv or not STARTUP_ANIMATION
+        if not no_anim:
+            import time
+            sys.stdout.write("Loading Modules... ")
+            sys.stdout.flush()
+            bar_width = 30
+            for i in range(bar_width + 1):
+                percent = i / bar_width
+                filled = int(bar_width * percent)
+                bar = "█" * filled + "░" * (bar_width - filled)
+                count = int(number_of_modules * percent)
+                sys.stdout.write(f"\rLoading Modules... [{bar}] {count}/{number_of_modules}")
+                sys.stdout.flush()
+                time.sleep(0.01)
+            print("\n")
+        else:
+            print(f"Loading Modules... [██████████████████████████████] {number_of_modules}/{number_of_modules}\n")
         print_status_bar(self)
 
     def _print_status_bar(self):
@@ -84,4 +102,14 @@ class _BareCLI(Base):
 RAMReconCLI = register_mixins(_BareCLI)
 
 def main():
+    import sys
+    from ramrecon.config.settings import STARTUP_ANIMATION
+    no_anim = "--no-animation" in sys.argv or not STARTUP_ANIMATION
+    
+    from ramrecon.cli.logo import startup_sequence
+    startup_sequence(no_animation=no_anim)
+    
+    if "--no-animation" in sys.argv:
+        sys.argv.remove("--no-animation")
+        
     RAMReconCLI().cmdloop()
