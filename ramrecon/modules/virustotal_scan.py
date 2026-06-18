@@ -4,6 +4,7 @@ import asyncio
 import aiohttp
 from rich.console import Console
 from rich.table import Table
+from rich import box
 from colorama import Fore, init
 from ramrecon.utils.util import clean_url, validate_url
 from ramrecon.config.settings import API_KEYS
@@ -83,7 +84,7 @@ def generate_stats(all_scan_data):
     
     detection_percentage = (total_positives / total_engines * 100) if total_engines else 0
     
-    table = Table(title="VirusTotal Scan Statistics", box="ROUNDED")
+    table = Table(title="VirusTotal Scan Statistics", box=box.ROUNDED)
     table.add_column("Metric", style="cyan", justify="left")
     table.add_column("Value", style="green", justify="left")
     
@@ -144,8 +145,7 @@ if __name__ == "__main__":
             console.print(Fore.RED + "\n[!] Process interrupted by user.")
             sys.exit(1)
         except Exception as e:
-            import traceback
-            traceback.print_exc()
+            console.print(Fore.RED + f"\n[!] An unexpected error occurred: {e}")
             sys.exit(1)
     else:
         console.print(Fore.RED + "[!] No target provided. Please pass one or more URLs.")
