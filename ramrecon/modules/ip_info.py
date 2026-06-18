@@ -6,6 +6,7 @@ from rich.table import Table
 from colorama import Fore, init, Style
 
 from ramrecon.config.settings import DEFAULT_TIMEOUT  
+from ramrecon.utils.util import clean_domain_input
 
 init(autoreset=True)
 console = Console(record=True)
@@ -14,7 +15,7 @@ def banner():
     console.print(f"""
 {Fore.GREEN}=============================================
           RAMRecon - IP Information
-============================================={Style.RESET_ALL}
+============================================= {Style.RESET_ALL}
 """)
 
 def get_ip_info(ip):
@@ -35,6 +36,14 @@ def get_ip_info(ip):
         return None
 
 def display_ip_info(ip_info):
+    isp = ip_info.get('isp', '')
+    org = ip_info.get('org', '')
+    as_info = ip_info.get('as', '')
+    is_cdn = any(cdn in s.lower() for s in (isp, org, as_info) for cdn in ("cloudflare", "cloudfront", "fastly", "akamai", "sucuri", "incapsula"))
+    if is_cdn:
+        console.print(f"{Fore.YELLOW}[!] Note: Target IP is behind a CDN/Proxy ({isp or org}). The geolocation\n"
+                      f"    information below represents the proxy edge server and not the actual origin host.{Style.RESET_ALL}\n")
+
     table = Table(show_header=True, header_style="bold white")
     table.add_column("Key", style="white", justify="left", min_width=15)
     table.add_column("Value", style="white", justify="left", min_width=50)
@@ -49,11 +58,10 @@ def display_ip_info(ip_info):
 
 def main(target):
     banner()
-    console.print(f"{Fore.WHITE}[*] Fetching IP info for: {target}{Style.RESET_ALL}")
+    domain = clean_domain_input(target)
+    console.print(f"{Fore.WHITE}[*] Fetching IP info for: {domain}{Style.RESET_ALL}")
 
-    ip = target  
-
-    ip_info = get_ip_info(ip)
+    ip_info = get_ip_info(domain)
 
     if ip_info:
         display_ip_info(ip_info)

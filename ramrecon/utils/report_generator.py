@@ -17,7 +17,8 @@ def safe_filename(s, max_length=255):
 
 # Ensure the results directory exists (with domain subdirectory)
 def ensure_results_directory(domain):
-    results_dir = os.path.join(os.getcwd(), settings.RESULTS_DIR, domain)
+    cleaned = clean_domain_input(domain)
+    results_dir = os.path.join(os.getcwd(), settings.RESULTS_DIR, cleaned)
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
     return results_dir

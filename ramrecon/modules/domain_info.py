@@ -139,6 +139,17 @@ def run(target, threads, opts):
     console.print(whois_tbl)
 
     if ip_info:
+        has_cdn = False
+        for row in ip_info:
+            org = row[2]
+            as_info = row[3]
+            if any(cdn in str(s).lower() for s in (org, as_info) for cdn in ("cloudflare", "cloudfront", "fastly", "akamai", "sucuri", "incapsula")):
+                has_cdn = True
+                break
+        if has_cdn:
+            console.print(f"[yellow][!] Note: Resolved IP is behind a CDN/Proxy (e.g. Cloudflare).[/yellow]\n"
+                          f"    [yellow]The geolocation below reflects the proxy server, not the origin host.[/yellow]\n")
+
         ip_tbl = Table(title="IP Geolocation", header_style="bold magenta", box=box.MINIMAL)
         for col in ("IP","Country","Org","ASN","Lat","Lon"):
             ip_tbl.add_column(col, justify="center")

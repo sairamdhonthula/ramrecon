@@ -38,7 +38,10 @@ def execute_script(script_name: str, target: str, threads: int = 1, module_opts:
         cmd = [sys.executable, "-m", f"ramrecon.modules.{mod}", clean_domain_input(target), str(threads)]
         if module_opts:
             cmd.append(json.dumps(module_opts))
-        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8")
+        env = dict(os.environ)
+        env["PYTHONIOENCODING"] = "utf-8"
+        env["PYTHONUTF8"] = "1"
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding="utf-8", errors="replace", env=env)
         first = True
         for line in iter(proc.stdout.readline, ""):
             if not line:

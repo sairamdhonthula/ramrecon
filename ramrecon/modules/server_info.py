@@ -4,7 +4,8 @@ import requests
 import re
 from rich.console import Console
 from rich.table import Table
-from colorama import Fore, init
+from colorama import Fore, init, Style
+from ramrecon.utils.util import clean_domain_input
 
 init(autoreset=True)
 console = Console(record=True)
@@ -41,6 +42,14 @@ def get_server_info(ip):
         return None
 
 def display_server_info(info):
+    isp = info.get('isp', '')
+    org = info.get('org', '')
+    as_info = info.get('as', '')
+    is_cdn = any(cdn in s.lower() for s in (isp, org, as_info) for cdn in ("cloudflare", "cloudfront", "fastly", "akamai", "sucuri", "incapsula"))
+    if is_cdn:
+        console.print(f"{Fore.YELLOW}[!] Note: Target IP is behind a CDN/Proxy ({isp or org}). The geolocation\n"
+                      f"    information below represents the proxy edge server and not the actual origin host.{Style.RESET_ALL}\n")
+
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Field", style="cyan", justify="left")
     table.add_column("Details", style="green")
@@ -53,6 +62,7 @@ def display_server_info(info):
 def main(target):
     banner()
     
+    target = clean_domain_input(target)
     if not validate_ip(target):
         console.print(Fore.YELLOW + f"[!] '{target}' is not a valid IP address, attempting to resolve to an IP...")
         ip = resolve_to_ip(target)

@@ -118,8 +118,10 @@ class ReportGeneratorCenter:
         self.iso_timestamp = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
         
         # Determine paths
+        from ramrecon.utils.util import clean_domain_input
         results_root = os.path.join(os.getcwd(), settings.RESULTS_DIR)
-        self.results_dir = os.path.join(results_root, self.target, self.timestamp)
+        target_clean = clean_domain_input(self.target)
+        self.results_dir = os.path.join(results_root, target_clean, self.timestamp)
         self.modules_dir = os.path.join(self.results_dir, "modules")
         
         # Parse all session results

@@ -7,7 +7,7 @@ from colorama import Fore, init
 
 
 from ramrecon.config.settings import DEFAULT_TIMEOUT  
-from ramrecon.utils.util import validate_ip  
+from ramrecon.utils.util import validate_ip, resolve_to_ip, clean_domain_input  
 
 
 init(autoreset=True)
@@ -32,6 +32,14 @@ def get_server_location(ip):
         return None
 
 def display_server_location(location_data):
+    isp = location_data.get('isp', '')
+    org = location_data.get('org', '')
+    as_info = location_data.get('as', '')
+    is_cdn = any(cdn in s.lower() for s in (isp, org, as_info) for cdn in ("cloudflare", "cloudfront", "fastly", "akamai", "sucuri", "incapsula"))
+    if is_cdn:
+        console.print(f"{Fore.YELLOW}[!] Note: Target IP is behind a CDN/Proxy ({isp or org}). The geolocation\n"
+                      f"    information below represents the proxy edge server and not the actual origin host.\n")
+
     table = Table(show_header=True, header_style="bold magenta")
     table.add_column("Field", style="cyan", justify="left")
     table.add_column("Details", style="green")
@@ -44,12 +52,18 @@ def display_server_location(location_data):
 def main(target):
     banner()
 
-    if not validate_ip(target):
-        console.print(Fore.RED + "[!] Invalid IP address. Please check the input and try again.")
-        return
+    target = clean_domain_input(target)
+    ip = target
+    if not validate_ip(ip):
+        console.print(Fore.YELLOW + f"[!] '{target}' is not a valid IP address, attempting to resolve to an IP...")
+        ip = resolve_to_ip(target)
+        if not ip:
+            console.print(Fore.RED + "[!] Invalid IP address or unable to resolve domain. Please check the input.")
+            return
+        console.print(Fore.GREEN + f"[+] Resolved domain '{target}' to IP: {ip}")
 
-    console.print(Fore.WHITE + f"[*] Fetching server location for: {target}")
-    location_info = get_server_location(target)
+    console.print(Fore.WHITE + f"[*] Fetching server location for: {ip}")
+    location_info = get_server_location(ip)
     if location_info:
         display_server_location(location_info)
     else:
