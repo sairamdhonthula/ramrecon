@@ -144,7 +144,8 @@ if __name__ == "__main__":
             console.print(Fore.RED + "\n[!] Process interrupted by user.")
             sys.exit(1)
         except Exception as e:
-            console.print(Fore.RED + f"\n[!] An unexpected error occurred: {e}")
+            import traceback
+            traceback.print_exc()
             sys.exit(1)
     else:
         console.print(Fore.RED + "[!] No target provided. Please pass one or more URLs.")
